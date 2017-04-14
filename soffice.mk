@@ -1,11 +1,16 @@
 SOFFICEFLAGS ?= --headless -env:UserInstallation=file:///tmp/soffice_headless
 SOFFICE ?= soffice
 
+SOFFICE_CONVERT_TO_PDF = $(SOFFICE) $(SOFFICEFLAGS) --convert-to pdf
+
 %.pdf: %.docx
-	$(SOFFICE) $(SOFFICEFLAGS) --convert-to pdf $<
+	$(SOFFICE_CONVERT_TO_PDF) $<
 
 %.pdf: %.doc
-	$(SOFFICE) $(SOFFICEFLAGS) --convert-to pdf $<
+	$(SOFFICE_CONVERT_TO_PDF) $<
 
 %.pdf: %.odt
-	$(SOFFICE) $(SOFFICEFLAGS) --convert-to pdf $<
+	$(SOFFICE_CONVERT_TO_PDF) $<
+
+%.pdf: %.txt
+	$(SOFFICE_CONVERT_TO_PDF) $<
